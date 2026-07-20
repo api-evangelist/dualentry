@@ -1,0 +1,44 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.dualentry.com/developers/guides/authentication
+docs: https://docs.dualentry.com/developers/guides/authentication
+summary:
+  types: [apiKey, oauth2]
+  api_key_in: [header]
+  api_key_header: X-API-KEY
+  oauth2_flows: [authorizationCode]
+  notes: >-
+    The DualEntry Public REST API authenticates with a static API key in the
+    X-API-KEY header. The hosted MCP server and the first-party CLI authenticate
+    with OAuth 2.1 browser sign-in instead (no API keys), where permissions match
+    the signed-in user's DualEntry role.
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter_name: X-API-KEY
+  surface: Public REST API (V1 + V2)
+  issuance: >-
+    Issued by an organization administrator in the DualEntry dashboard. The key
+    is shown once at creation and cannot be retrieved afterward; store it in a
+    secret manager or environment variable. Separate keys are recommended for
+    development vs production.
+  errors:
+    missing_key: 401
+    invalid_or_revoked_key: 403 (message "API key authentication failed")
+  sources: [https://docs.dualentry.com/developers/guides/authentication]
+- name: OAuth2
+  type: oauth2
+  scheme: OAuth 2.1
+  surface: Hosted MCP server + DualEntry CLI
+  flow: authorizationCode
+  description: >-
+    Browser-based OAuth 2.1 sign-in. The CLI stores credentials in the system
+    keychain; the MCP server (https://api.dualentry.com/mcp/) signs in per
+    client. Permissions are scoped to the authenticated user's DualEntry role.
+    No public scope reference is documented.
+  cli_bootstrap: dualentry auth login
+  headless_alternative: X_API_KEY environment variable (CI/CD)
+  sources:
+  - https://docs.dualentry.com/developers/guides/mcp-integration
+  - https://docs.dualentry.com/developers/guides/cli-quickstart
