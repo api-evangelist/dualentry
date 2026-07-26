@@ -1,0 +1,51 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.dualentry.com/accountants/integrations/webhooks
+docs: https://docs.dualentry.com/accountants/integrations/webhooks
+spec_type: Webhooks
+surface: webhooks
+transport: HTTPS POST to subscriber-registered endpoints
+topics_catalog_endpoint: GET /public/v2/webhooks/topics/
+registration:
+  method: POST /public/v2/webhooks/
+  body: '{"url": "https://your-app.example.com/webhook", "topics": ["core.customer/created"]}'
+  signing_secret: returned once on creation, never retrievable again
+topic_pattern: <app>.<Model>/<action>
+actions: [created, updated, deleted]
+example_topics:
+- core.customer/created
+- core.invoice/created
+- core.invoice/updated
+- core.bill/created
+- core.journalentry/created
+allowlisted_models_note: >-
+  Topics are drawn from an explicit allowlist (customers, invoices, bills,
+  journal entries, and other core records); the full live catalog is retrievable
+  via the topics endpoint.
+envelope:
+  fields:
+    event_id: unique event identifier
+    api_version: dated API version string (e.g. 2026-06-27)
+    topic: e.g. core.invoice/created
+    object_type: e.g. core.Invoice
+    object: '{ id: <record id> } — id reference only; full record fetched separately'
+    webhook_uuid: subscription identifier
+    created_at: ISO 8601 timestamp
+signing:
+  algorithm: HMAC-SHA256
+  signed_payload: '"<timestamp>.<raw_body>"'
+  encoding: hex
+  headers:
+    signature: Dualentry-Webhook-Signature-V1
+    timestamp: Dualentry-Webhook-Request-Timestamp
+    webhook_uuid: Dualentry-Webhook-Uuid
+  replay_window_seconds: 300
+  verification: recompute HMAC over exact raw body, constant-time compare, reject stale timestamps
+delivery:
+  guarantee: at-least-once
+  backoff: exponential
+  terminal_success: 2xx
+  no_retry_statuses: [400, 401, 403, 404, 405, 410, 422]
+  honor_retry_after: [429]
+  retry_statuses: [5xx, timeouts]
+  auto_disable: endpoints failing continuously for 5 days are auto-disabled (last_error=webhook_disabled)

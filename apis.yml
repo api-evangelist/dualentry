@@ -1,8 +1,32 @@
 aid: dualentry
 name: DualEntry
-description: 'DualEntry is a company surfaced as a portfolio company of gv, khosla-ventures, lightspeed-venture-partners
-  and added to the API Evangelist network as a stub for enrichment. Sector: ai. This profile is a lead
-  awaiting the enrichment pipeline.'
+description: >-
+  DualEntry is an AI-native ERP (enterprise resource planning) platform for
+  finance and accounting teams, positioned as a modern replacement for NetSuite,
+  QuickBooks, and Xero. It covers core financials (general ledger, accounts
+  payable and receivable, cash management, bank and account reconciliation, tax,
+  and month-end close), advanced accounting (ASC 606 revenue recognition,
+  subscription billing, prepaid amortization, fixed-asset and multi-book
+  depreciation), and enterprise scale (multi-entity consolidation, multi-currency,
+  intercompany journal entries, budgeting, and reporting), layered with AI
+  automation for categorization, anomaly detection, OCR document capture, and
+  continuous close. Developers integrate through the DualEntry Public API (V1 and
+  V2 REST), a hosted MCP server for AI assistants, a first-party Python CLI, and
+  signed webhooks. The company raised a $90M Series A and is backed by GV, Khosla
+  Ventures, and Lightspeed Venture Partners.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/66bf861737ab5a556a15c52b/671944f8d88d82c212724765_DualEntry.png
 url: https://raw.githubusercontent.com/api-evangelist/dualentry/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -14,11 +38,52 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
-- Ai
-apis: []
+- AI
+- Accounting
+- ERP
+- Finance
+- Financial Operations
+- Bookkeeping
+- Revenue Recognition
+- Fintech
+apis:
+- name: DualEntry Public API
+  description: >-
+    REST API for programmatic access to an organization's accounting data across
+    setup (accounts, items, classifications), master data (companies, customers,
+    vendors), transactions (invoices, bills, journal entries, payments, purchase
+    orders), and automation (recurring transactions, attachments). V2 adds
+    depreciation books, intercompany journal entries, and multi-book fixed-asset
+    depreciation. Authenticated with an X-API-KEY header; offset-based pagination;
+    token-bucket rate limiting; signed webhooks for record lifecycle events.
+  humanURL: https://docs.dualentry.com/developers/guides/index
+  baseURL: https://api.dualentry.com/public/v2/
+  tags:
+  - Accounting
+  - ERP
+  - Finance
+  properties:
+  - type: APIReference
+    url: https://docs.dualentry.com/developers/api/resources-v2/invoices/list-invoicev2-records
+  - type: GettingStarted
+    url: https://docs.dualentry.com/developers/guides/quickstart-first-api-call
+  - type: Authentication
+    url: authentication/dualentry-authentication.yml
+  - type: RateLimits
+    url: rate-limits/dualentry-rate-limits.yml
+  - type: Webhooks
+    url: asyncapi/dualentry-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/dualentry-problem-types.yml
+  - type: Conventions
+    url: conventions/dualentry-conventions.yml
+  - type: Lifecycle
+    url: lifecycle/dualentry-lifecycle.yml
+  - type: DataModel
+    url: data-model/dualentry-data-model.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -27,3 +92,62 @@ maintainers:
 common:
 - type: Website
   url: https://www.dualentry.com
+- type: DeveloperPortal
+  url: https://docs.dualentry.com/developers/guides/index
+- type: Documentation
+  url: https://docs.dualentry.com
+- type: APIReference
+  url: https://docs.dualentry.com/developers/api/resources-v2/invoices/list-invoicev2-records
+- type: GettingStarted
+  url: https://docs.dualentry.com/developers/guides/quickstart-first-api-call
+- type: Blog
+  url: https://www.dualentry.com/blog
+- type: Pricing
+  url: https://www.dualentry.com/pricing
+- type: SignUp
+  url: https://app.dualentry.com/
+- type: Login
+  url: https://app.dualentry.com/
+- type: TermsOfService
+  url: https://www.dualentry.com/legal/website-terms-of-use
+- type: PrivacyPolicy
+  url: https://www.dualentry.com/legal/privacy-policy
+- type: GitHubOrganization
+  url: https://github.com/dualentry
+- type: TrustCenter
+  url: https://trust.dualentry.com/
+- type: MCPServer
+  url: mcp/dualentry-mcp.yml
+- type: CLI
+  url: cli/dualentry-cli.yml
+- type: Packages
+  url: packages/dualentry-packages.yml
+- type: Sandbox
+  url: sandbox/dualentry-sandbox.yml
+- type: Webhooks
+  url: asyncapi/dualentry-webhooks.yml
+- type: Authentication
+  url: authentication/dualentry-authentication.yml
+- type: Conventions
+  url: conventions/dualentry-conventions.yml
+- type: RateLimits
+  url: rate-limits/dualentry-rate-limits.yml
+- type: ErrorCatalog
+  url: errors/dualentry-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/dualentry-lifecycle.yml
+- type: ChangeLog
+  url: changelog/dualentry-changelog.yml
+- type: Conformance
+  url: conformance/dualentry-conformance.yml
+- type: DataModel
+  url: data-model/dualentry-data-model.yml
+- type: DomainSecurity
+  url: security/dualentry-domain-security.yml
+- type: LLMsTxt
+  url: llms/dualentry-llms.txt
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

@@ -1,0 +1,26 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.dualentry.com/developers/guides/authentication
+docs: https://docs.dualentry.com/developers/guides/introduction
+environments:
+- name: production
+  base_url: https://api.dualentry.com
+  api_base: https://api.dualentry.com/public/v2/
+- name: development
+  base_url: https://api-dev.dualentry.com
+  purpose: >-
+    Separate development host for building and testing integrations against
+    non-production data.
+key_separation:
+  model: >-
+    Separate API keys are recommended per environment (development vs
+    production). Keys are issued in the DualEntry dashboard and shown once.
+  test_key_prefix: null
+test_values:
+  cards: null
+  bank_accounts: null
+  notes: >-
+    DualEntry is an ERP/accounting API, not a card acquirer — it publishes no
+    magic test card numbers or hosted test tokens. Sandbox testing is done with
+    development API keys against the api-dev host and the caller's own test tenant
+    data. No published test clocks or fixture-trigger tooling were found.

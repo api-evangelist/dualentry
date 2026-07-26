@@ -1,0 +1,59 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.dualentry.com/developers/guides
+docs:
+  authentication: https://docs.dualentry.com/developers/guides/authentication
+  pagination: https://docs.dualentry.com/developers/guides/pagination
+  rate_limiting: https://docs.dualentry.com/developers/guides/rate-limiting
+  errors: https://docs.dualentry.com/developers/guides/errors
+  webhooks: https://docs.dualentry.com/accountants/integrations/webhooks
+conventions:
+  authentication:
+    style: api-key
+    header: X-API-KEY
+    oauth: OAuth 2.1 for CLI and MCP server (browser sign-in)
+    cross_ref: authentication/dualentry-authentication.yml
+  idempotency:
+    supported: false
+    notes: >-
+      No idempotency-key header or parameter is documented for the Public API as
+      of this capture. Retries of write operations are not deduplicated by the
+      server; clients must guard against duplicate submissions themselves.
+  pagination:
+    style: offset
+    params:
+      limit: {default: 100, max: 100, note: values above 100 are silently capped}
+      offset: {default: 0, note: number of records to skip}
+    response: >-
+      List endpoints return a direct JSON array with no envelope or paging
+      metadata. Clients detect the last page when fewer than `limit` records are
+      returned. Invalid params (limit=0, offset=-1) return 400.
+    cross_ref: https://docs.dualentry.com/developers/guides/pagination
+  versioning:
+    style: uri-path
+    versions: [v1, v2]
+    base_path: /public/{version}/
+    current: v2
+    api_version_field: >-
+      Webhook payloads carry an `api_version` date string (e.g. 2026-06-27).
+    cross_ref: lifecycle/dualentry-lifecycle.yml
+  error_envelope:
+    format: custom
+    rfc9457: false
+    shape: '{"success": false, "errors": {"<field|__all__>": ["message"]}}'
+    cross_ref: errors/dualentry-problem-types.yml
+  rate_limit_signaling:
+    headers: [X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After]
+    status_on_exceed: 429
+    model: two-layer token bucket (aggregate + per-endpoint)
+    cross_ref: rate-limits/dualentry-rate-limits.yml
+  webhooks:
+    signing: HMAC-SHA256 over "<timestamp>.<raw_body>", hex-encoded
+    signature_header: Dualentry-Webhook-Signature-V1
+    timestamp_header: Dualentry-Webhook-Request-Timestamp
+    replay_window_seconds: 300
+    delivery: at-least-once with exponential backoff
+    cross_ref: asyncapi/dualentry-webhooks.yml
+  attachments:
+    notes: File attachments supported on records via dedicated attachment endpoints.
+    cross_ref: https://docs.dualentry.com/developers/guides/working-with-attachments

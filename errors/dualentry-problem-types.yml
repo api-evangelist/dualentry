@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.dualentry.com/developers/guides/errors
+docs: https://docs.dualentry.com/developers/guides/errors
+format: custom
+rfc9457: false
+envelope:
+  shape: '{"success": false, "errors": {"<field_name|__all__>": ["error message"]}}'
+  fields:
+    success: boolean flag (false on error)
+    errors: object mapping field name (or "__all__") to an array of messages
+problems:
+- status: 400
+  title: Bad request
+  detail: Malformed request or invalid parameters (e.g. limit=0, offset=-1).
+- status: 401
+  title: Missing API key
+  detail: No X-API-KEY header supplied.
+- status: 402
+  title: Subscription required
+  detail: The organization's subscription does not permit the request.
+- status: 403
+  title: Invalid or revoked API key
+  detail: X-API-KEY present but authentication failed ("API key authentication failed").
+- status: 404
+  title: Resource not found
+  detail: The requested record does not exist or is not visible to the caller.
+- status: 422
+  title: Validation error
+  detail: Field-level validation failed; messages keyed by field name in `errors`.
+- status: 429
+  title: Rate limit exceeded
+  detail: Token-bucket limit hit; see Retry-After. Ref rate-limits/dualentry-rate-limits.yml.
+- status: 500
+  title: Server error
+  detail: Unexpected server-side failure.
+- status: 503
+  title: Service unavailable
+  detail: The API is temporarily unavailable.

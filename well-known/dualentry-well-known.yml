@@ -1,0 +1,22 @@
+generated: '2026-07-18'
+method: searched
+source: live probes of DualEntry hosts
+hosts_probed:
+- https://www.dualentry.com
+- https://api.dualentry.com
+- https://docs.dualentry.com
+- https://app.dualentry.com
+documents:
+- {host: https://www.dualentry.com, path: /.well-known/security.txt, status: 404}
+- {host: https://dualentry.com, path: /.well-known/security.txt, status: 404}
+- {host: https://api.dualentry.com, path: /.well-known/security.txt, status: 404}
+- {host: https://docs.dualentry.com, path: /.well-known/security.txt, status: 404}
+- {host: https://app.dualentry.com, path: /.well-known/openid-configuration, status: 404}
+- {host: https://api.dualentry.com, path: /.well-known/openid-configuration, status: 404}
+- {host: https://www.dualentry.com, path: /.well-known/api-catalog, status: 404}
+notes: >-
+  No /.well-known/ discovery documents (security.txt, OIDC/OAuth server metadata,
+  api-catalog, ai-plugin) were served on any DualEntry host at capture time.
+  OAuth 2.1 for the CLI/MCP is present but exposes no public discovery document.
+  Empty is a valid, honest result; no WellKnown/SecurityTxt canonical pointer is
+  wired because nothing returned 200.

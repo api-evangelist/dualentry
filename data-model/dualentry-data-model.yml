@@ -1,0 +1,61 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.dualentry.com/developers/api/resources-v2
+docs: https://docs.dualentry.com/accountants/get-started/key-concepts
+note: >-
+  Derived from the DualEntry Public API resource reference (V1/V2) and the
+  data-model key-concepts guide. DualEntry has no published OpenAPI, so
+  field-level $ref relationships are inferred from documented resource semantics
+  (multi-entity, multi-book accounting) rather than a machine-readable spec.
+domains:
+  setup: [Account, Item, Classification, CustomField]
+  master_data: [Company, Customer, Vendor]
+  receivables: [Invoice, SalesOrder, CustomerPayment, CustomerCredit, CustomerPrepayment, CustomerDeposit, CustomerRefund, CashSale]
+  payables: [Bill, PurchaseOrder, VendorPayment, VendorCredit, VendorPrepayment, VendorRefund, DirectExpense]
+  accounting: [JournalEntry, IntercompanyJournalEntry, BankTransfer, FixedAsset, DepreciationBook]
+  revenue_recognition: [Contract, UsageRecord]
+  automation: [RecurringTransaction, Attachment, Budget, ApprovalWorkflow]
+entities:
+- name: Company
+  domain: master_data
+  note: Legal entity / subsidiary; transactions are scoped to a company (multi-entity).
+- name: Account
+  domain: setup
+  note: Chart-of-accounts entry addressed by account number.
+- name: Classification
+  domain: setup
+  note: Dimension used to tag transactions (with Classification Lines).
+- name: Customer
+  domain: master_data
+- name: Vendor
+  domain: master_data
+- name: Invoice
+  domain: receivables
+- name: Bill
+  domain: payables
+- name: JournalEntry
+  domain: accounting
+- name: IntercompanyJournalEntry
+  domain: accounting
+  note: V2 — spans multiple companies with per-line company assignment.
+- name: FixedAsset
+  domain: accounting
+  note: V2 uses depreciation_schedules[] supporting multiple depreciation books per asset.
+- name: DepreciationBook
+  domain: accounting
+  note: V2 read-only — codes BOOK, FEDERAL, AMT, STATE_*.
+- name: Contract
+  domain: revenue_recognition
+  note: ASC 606 revenue-recognition contract; owns usage records.
+relationships:
+- {from: Invoice, type: belongs_to, to: Company, via: company}
+- {from: Invoice, type: belongs_to, to: Customer, via: customer}
+- {from: Bill, type: belongs_to, to: Company, via: company}
+- {from: Bill, type: belongs_to, to: Vendor, via: vendor}
+- {from: CustomerPayment, type: belongs_to, to: Customer, via: customer}
+- {from: VendorPayment, type: belongs_to, to: Vendor, via: vendor}
+- {from: JournalEntry, type: belongs_to, to: Company, via: company}
+- {from: IntercompanyJournalEntry, type: has_many, to: Company, via: line.company}
+- {from: FixedAsset, type: has_many, to: DepreciationBook, via: depreciation_schedules}
+- {from: Contract, type: has_many, to: UsageRecord, via: usage_records}
+- {from: Classification, type: has_many, to: ClassificationLine, via: lines}

@@ -1,0 +1,30 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.dualentry.com/developers/guides/rate-limiting
+docs: https://docs.dualentry.com/developers/guides/rate-limiting
+model: two-layer token bucket
+status_on_exceed: 429
+signal_headers:
+- X-RateLimit-Limit
+- X-RateLimit-Remaining
+- X-RateLimit-Reset
+- Retry-After
+retry_guidance: >-
+  Honor the Retry-After header; use exponential backoff on repeated failures.
+rate_limits:
+- name: Aggregate (all endpoints)
+  scope: account
+  burst: 50
+  refill_per_second: 5
+  limit_count: 300
+  unit: requests/minute
+- name: Per-endpoint
+  scope: endpoint
+  burst: 10
+  refill_per_second: 1
+  limit_count: 60
+  unit: requests/minute
+- name: Invoice writes
+  scope: 'POST /v2/invoices/ and PUT /v2/invoices/{record_number}/'
+  limit_count: 2
+  unit: requests/minute

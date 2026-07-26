@@ -1,0 +1,30 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.dualentry.com/developers/guides/api-changelog
+versioning:
+  scheme: uri-path
+  versions: [v1, v2]
+  current: v2
+  base_path: /public/{version}/
+  api_version_field: >-
+    Webhook payloads carry a dated api_version string (e.g. 2026-06-27).
+  docs: https://docs.dualentry.com/developers/guides/api-changelog
+  policy: >-
+    All V1 endpoints are available at /public/v2/ with identical behavior except
+    the documented V2 additions (depreciation books, intercompany journal
+    entries) and the changed fixed-assets shape. V1 remains maintained for
+    backward compatibility.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No formal deprecation policy or RFC 8594 Sunset/Deprecation header support is
+    documented. V1 is described as maintained for backward compatibility with no
+    announced end-of-life.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+changelog: https://docs.dualentry.com/developers/guides/api-changelog
+release_notes: https://docs.dualentry.com/developers/release-notes/2026-06-19
+deprecated_operations: []

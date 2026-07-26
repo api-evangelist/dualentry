@@ -1,0 +1,31 @@
+generated: '2026-07-18'
+method: derived
+source: docs.dualentry.com developer guides (auth, errors, pagination, webhooks, mcp)
+standards:
+- id: oauth2
+  conforms: true
+  evidence: OAuth 2.1 browser sign-in for the CLI and the hosted MCP server.
+- id: api-key-auth
+  conforms: true
+  evidence: X-API-KEY header authenticates the Public REST API.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom {success, errors} envelope, not application/problem+json.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset/Deprecation header support documented.
+- id: webhook-hmac-signing
+  conforms: true
+  evidence: Webhooks signed with HMAC-SHA256 over "<timestamp>.<raw_body>" with a 300s replay window.
+- id: offset-pagination
+  conforms: true
+  evidence: List endpoints use limit/offset offset-based pagination.
+- id: rate-limit-headers
+  conforms: true
+  evidence: X-RateLimit-Limit/Remaining/Reset + Retry-After on 429.
+- id: mcp
+  conforms: true
+  evidence: Hosted Model Context Protocol server over Streamable HTTP at https://api.dualentry.com/mcp/.
+- id: asc606-revenue-recognition
+  conforms: true
+  evidence: Revenue recognition contracts (ASC 606) modeled as first-class API resources.

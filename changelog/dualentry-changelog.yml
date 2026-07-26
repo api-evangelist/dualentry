@@ -1,0 +1,37 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.dualentry.com/developers/guides/api-changelog
+docs: https://docs.dualentry.com/developers/guides/api-changelog
+release_notes: https://docs.dualentry.com/developers/release-notes/2026-06-19
+scheme: major-version (V1, V2) + dated product release notes
+current_version: v2
+entries:
+- version: v2
+  status: current
+  breaking: false
+  additions:
+  - >-
+    New resource: Depreciation Books (/v2/depreciation-books/) — read-only
+    endpoints to discover available depreciation books (BOOK, FEDERAL, AMT,
+    STATE_*).
+  - >-
+    New resource: Intercompany Journal Entries (/v2/intercompany-journal-entries/)
+    — journal entries spanning multiple companies with per-line company assignment.
+  changed:
+  - >-
+    Fixed Assets (/v2/fixed-assets/): V2 replaces flattened single-book
+    depreciation fields with a depreciation_schedules[] array supporting multiple
+    books per asset. This is the one shape change to handle when migrating.
+  migration: >-
+    Change base URL from /public/v1/ to /public/v2/; update fixed-asset handling
+    for depreciation_schedules[]; all other endpoints behave identically.
+- version: v1
+  status: maintained
+  breaking: false
+  highlights:
+  - Initial public API release; all accounting resources available at /public/v1/.
+- date: '2026-06-19'
+  kind: product-release-notes
+  highlights:
+  - Trial Balance as-of-date support.
+  - Cryptoworth MCP integration.

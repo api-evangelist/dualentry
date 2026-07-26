@@ -1,0 +1,40 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.dualentry.com/developers/guides/cli-reference
+docs:
+  quickstart: https://docs.dualentry.com/developers/guides/cli-quickstart
+  reference: https://docs.dualentry.com/developers/guides/cli-reference
+  workflows: https://docs.dualentry.com/developers/guides/cli-common-workflows
+name: dualentry
+official: true
+language: python
+runtime: Python 3.11+
+repo: https://github.com/dualentry/dualentry-cli
+install:
+- method: homebrew
+  command: brew install dualentry/tap/dualentry
+- method: uv
+  command: uv tool install git+https://github.com/dualentry/dualentry-cli.git
+- method: script
+  command: curl -fsSL https://raw.githubusercontent.com/dualentry/dualentry-cli/main/install.sh | sh
+authentication:
+  interactive: dualentry auth login (OAuth 2.1 browser sign-in; credentials stored in system keychain)
+  headless: X_API_KEY environment variable (CI/CD)
+global_options:
+- {flag: '--version, -v', description: Print the CLI version and exit}
+- {flag: '--help', description: Show help for any command or subcommand}
+- {flag: '--install-completion', description: Install shell tab completion}
+resource_subcommands: [list, get, create, update]
+resource_subcommands_note: No delete subcommand; records can only be listed, retrieved, created, or updated.
+resources:
+  receivables: [invoices, sales-orders, customer-payments, customer-credits, customer-prepayments, customer-prepayment-applications, customer-deposits, customer-refunds, cash-sales]
+  payables: [bills, purchase-orders, vendor-payments, vendor-credits, vendor-prepayments, vendor-prepayment-applications, vendor-refunds, direct-expenses]
+  accounting: [journal-entries, bank-transfers, fixed-assets, depreciation-books]
+  master_data: [customers, vendors, items, accounts, companies, classifications]
+  automation: [recurring, contracts, budgets, workflows]
+key_flows:
+- Output format: dualentry invoices list --format json
+- Paginate all: dualentry invoices list --all
+- Date filter: dualentry journal-entries list --start-date 2026-03-01 --end-date 2026-03-31
+- Status filter: dualentry bills list --status posted
+- View config: dualentry config show

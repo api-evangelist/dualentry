@@ -1,0 +1,24 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.dualentry.com/developers/guides/cli-quickstart
+packages:
+- language: python
+  registry: homebrew
+  name: dualentry/tap/dualentry
+  url: https://github.com/dualentry/homebrew-tap
+  install: brew install dualentry/tap/dualentry
+  official: true
+  kind: cli
+  note: First-party DualEntry CLI (Python 3.11+); command surface in cli/dualentry-cli.yml.
+- language: python
+  registry: github
+  name: dualentry-cli
+  url: https://github.com/dualentry/dualentry-cli
+  install: uv tool install git+https://github.com/dualentry/dualentry-cli.git
+  official: true
+  kind: cli
+notes: >-
+  DualEntry ships no importable server-side SDK / client library; the only
+  first-party package is the CLI (installable via Homebrew tap, uv from the
+  GitHub repo, or the official install script). No npm, PyPI, Maven, NuGet,
+  RubyGems, Packagist, or crates.io first-party client library was found.
