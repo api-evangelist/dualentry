@@ -10,22 +10,26 @@ server:
   transport_detail: Streamable HTTP
   url: https://api.dualentry.com/mcp/
   authentication: OAuth 2.1 (browser sign-in, no API keys)
-  permissions: >-
-    MCP permissions match the signed-in user's DualEntry role — the server cannot
-    surface data the user cannot see in the dashboard.
+  permissions: MCP permissions match the signed-in user's DualEntry role — the server cannot surface data
+    the user cannot see in the dashboard.
 clients:
 - name: Cursor
-  install: 'one-click deeplink or mcp.json mcpServers entry with url https://api.dualentry.com/mcp/'
+  install: one-click deeplink or mcp.json mcpServers entry with url https://api.dualentry.com/mcp/
 - name: Claude.ai
   install: Settings > Connectors > Add custom connector > https://api.dualentry.com/mcp/
 - name: Claude Code
   install: claude mcp add --transport http dualentry https://api.dualentry.com/mcp/
 - name: VS Code
   install: .vscode/mcp.json servers entry pointing at https://api.dualentry.com/mcp/
-capabilities: >-
-  Natural-language access to accounting data — records, accounts, vendors,
-  customers — over the DualEntry Public API surface, scoped by user role.
+capabilities: Natural-language access to accounting data — records, accounts, vendors, customers — over
+  the DualEntry Public API surface, scoped by user role.
 tools: []
-tools_note: >-
-  DualEntry does not publish an explicit tool manifest; tools are exposed
-  dynamically by the hosted server and gated by the authenticated user's role.
+tools_note: DualEntry does not publish an explicit tool manifest; tools are exposed dynamically by the
+  hosted server and gated by the authenticated user's role.
+deployment:
+  mode: remote
+  endpoint: https://api.dualentry.com/mcp/
+  verified: probed
+  probe: gated
+  checked: '2026-08-12'
+  source: catalog MCP census
