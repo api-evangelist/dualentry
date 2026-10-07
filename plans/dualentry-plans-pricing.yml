@@ -1,0 +1,39 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://www.dualentry.com/pricing
+sources:
+- https://www.dualentry.com/pricing
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: negotiated
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+published: false
+note: Three named tiers but no numeric prices; all CTAs are 'Schedule demo'. Only numbers shown are API
+  rate limits and implementation cost comparisons for a competitor. Additional users billed at an unstated
+  'additional fee per user per month'.
+plan_count: 3
+plans:
+- name: DualEntry
+  price_text: Schedule demo
+  period: none
+  included_quota: Unlimited users, transactions, classifications, and currencies; Up to 3 entities; All
+    core accounting features; Limited revenue recognition modules
+- name: DualEntry Plus
+  price_text: Schedule demo
+  period: none
+  included_quota: Everything in DualEntry; Up to 20 entities; Entity Add-On; Multi-Currency Consolidation
+- name: DualEntry Ultra
+  price_text: Schedule demo
+  period: none
+  included_quota: Everything in DualEntry Plus; Unlimited entities; Advanced revenue recognition modules;
+    Financial planning and dynamic allocations; SAML authentication
+rate_limit_statements:
+- 200 requests/min
+- On Request
