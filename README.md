@@ -64,6 +64,120 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-DualEntry is a company surfaced as a portfolio company of gv, khosla-ventures, lightspeed-venture-partners and added to the API Evangelist network as a stub for enrichment. Sector: ai. This profile is a lead awaiting the enrichment pipeline.
+DualEntry is an AI-native ERP (enterprise resource planning) platform for finance and accounting teams, positioned as a modern replacement for NetSuite, QuickBooks, and Xero. It covers core financials (general ledger, accounts payable and receivable, cash management, bank and account reconciliation, tax, and month-end close), advanced accounting (ASC 606 revenue recognition, subscription billing, prepaid amortization, fixed-asset and multi-book depreciation), and enterprise scale (multi-entity consolidation, multi-currency, intercompany journal entries, budgeting, and reporting), layered with AI automation for categorization, anomaly detection, OCR document capture, and continuous close. Developers integrate through the DualEntry Public API (V1 and V2 REST), a hosted MCP server for AI assistants, a first-party Python CLI, and signed webhooks. The company raised a $90M Series A and is backed by GV, Khosla Ventures, and Lightspeed Venture Partners.
 
-Backed by: gv, khosla-ventures, lightspeed-venture-partners — https://www.dualentry.com
+**Areas:** Company · Artificial Intelligence · Accounting · ERP · Finance · Financial Operations · Bookkeeping · Revenue Recognition · Fintech
+
+## DualEntry on APIs.io
+
+Everything profiled for DualEntry is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/dualentry/](https://apis.io/providers/dualentry/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [DualEntry Public API](https://apis.io/apis/dualentry/dualentry-public-api/) — REST API for programmatic access to an organization's accounting data across setup (accounts, items, classifications), master data (companies, customers,…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Dualentry Webhooks](https://apis.io/asyncapis/dualentry/dualentry-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [dualentry](https://apis.io/servers/dualentry/dualentry/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Dualentry Authentication](https://apis.io/security/dualentry/dualentry-authentication/)
+- [Dualentry Domain Security](https://apis.io/security/dualentry/dualentry-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Dualentry Plans Pricing](https://apis.io/plans/dualentry/dualentry-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Dualentry Rate Limits](https://apis.io/rate-limits/dualentry/dualentry-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.dualentry.com)
+- [Documentation](https://docs.dualentry.com)
+- [Getting started](https://docs.dualentry.com/developers/guides/quickstart-first-api-call)
+- [API reference](https://docs.dualentry.com/developers/api/resources-v2/invoices/list-invoicev2-records)
+- [Pricing](https://www.dualentry.com/pricing)
+- [Sign up](https://app.dualentry.com/)
+- [Blog](https://www.dualentry.com/blog)
+- [Trust centre](https://trust.dualentry.com/)
+- [Terms of service](https://www.dualentry.com/legal/website-terms-of-use)
+- [Privacy policy](https://www.dualentry.com/legal/privacy-policy)
+- [GitHub](https://github.com/dualentry)
+
+## API Evangelist rating
+
+**Kin Score 49.7** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 39.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 57.9 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 84.2 |
+
+**Agent readiness 50.0** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 27.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/dualentry/](https://apis.io/providers/dualentry/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for DualEntry: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/dualentry/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
